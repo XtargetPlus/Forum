@@ -16,7 +16,7 @@ docker compose up -d
 ```
 dotnet ef database update -p Storage -s API
 ```
-или если с помощью PMC необходимо выбрать проект по умолчанию Storage и выполнить команду:
+или с помощью PMC необходимо выбрать проект по умолчанию Storage и выполнить команду:
 ```
 Update-Database
 ```
