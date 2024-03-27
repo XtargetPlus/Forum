@@ -1,5 +1,4 @@
-﻿using Domain.Dtos;
-using Domain.Exceptions;
+﻿using Domain.Exceptions;
 using FluentValidation;
 
 namespace Domain.UseCases.GetTopics;

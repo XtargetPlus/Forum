@@ -1,4 +1,4 @@
-﻿using Domain.Dtos;
+﻿using Domain.UseCases.CreateForum;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Storage.Storages;

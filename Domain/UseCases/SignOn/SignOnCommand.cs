@@ -1,3 +1,14 @@
-﻿namespace Domain.UseCases.SignOn;
+﻿using Domain.Authentication;
+using Domain.Monitoring;
+using MediatR;
 
-public record SignOnCommand(string Login, string Password);
+namespace Domain.UseCases.SignOn;
+
+public record SignOnCommand(string Login, string Password) : IRequest<IIdentity>, IMonitoredRequest
+{
+    private const string CounterName = "user_sign-on";
+
+    public void MonitorSuccess(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(true));
+
+    public void MonitorFailure(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(false));
+}

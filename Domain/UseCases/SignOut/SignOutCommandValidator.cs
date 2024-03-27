@@ -2,6 +2,4 @@
 
 namespace Domain.UseCases.SignOut;
 
-internal class SignOutCommandValidator : AbstractValidator<SignOutCommand>
-{
-}
+internal class SignOutCommandValidator : AbstractValidator<SignOutCommand>;

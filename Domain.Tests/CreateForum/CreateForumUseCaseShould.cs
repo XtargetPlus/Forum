@@ -1,5 +1,6 @@
 ﻿using Domain.Authorization;
 using Domain.Dtos;
+using Domain.Monitoring;
 using Domain.UseCases.CreateForum;
 using FluentAssertions;
 using FluentValidation;
@@ -45,7 +46,7 @@ public class CreateForumUseCaseShould
 
         _createForumSetup.ReturnsAsync(forum);
 
-        var actual = await _sut.Execute(new CreateForumCommand(forumTitle), CancellationToken.None);
+        var actual = await _sut.Handle(new CreateForumCommand(forumTitle), CancellationToken.None);
         actual.Should().BeEquivalentTo(forum);
 
         _storage.Verify(s => s.CreateForum(new CreateForumCommand(forumTitle), It.IsAny<CancellationToken>()), Times.Once);

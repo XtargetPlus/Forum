@@ -1,12 +1,12 @@
-﻿using Domain.Authentication;
+﻿using Domain.Dtos;
 using Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.SignIn;
+namespace Domain.UseCases.GetTopics;
 
-public record SignInCommand(string Login, string Password) : IRequest<(IIdentity identity, string token)>, IMonitoredRequest
+public record GetTopicsQuery(Guid ForumId, int Skip, int Take) : IRequest<(IEnumerable<TopicDto> resources, int totalCount)>, IMonitoredRequest
 {
-    private const string CounterName = "user_sign-in";
+    private const string CounterName = "topics_fetched";
 
     public void MonitorSuccess(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(true));
 

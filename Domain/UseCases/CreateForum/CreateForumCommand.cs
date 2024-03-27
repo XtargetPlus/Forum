@@ -1,11 +1,12 @@
-﻿using Domain.Monitoring;
+﻿using Domain.Dtos;
+using Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.SignOut;
+namespace Domain.UseCases.CreateForum;
 
-public record SignOutCommand : IRequest, IMonitoredRequest
+public record CreateForumCommand(string Title) : IRequest<ForumDto>, IMonitoredRequest
 {
-    private const string CounterName = "user_sign-out";
+    private const string CounterName = "forums_created";
 
     public void MonitorSuccess(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(true));
 

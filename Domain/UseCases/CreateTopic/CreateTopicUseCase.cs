@@ -3,6 +3,7 @@ using Domain.Authorization;
 using Domain.Dtos;
 using Domain.UseCases.GetForums;
 using FluentValidation;
+using MediatR;
 
 namespace Domain.UseCases.CreateTopic;
 
@@ -11,10 +12,10 @@ internal class CreateTopicUseCase(
         IIntentionManager intentionManager,
         ICreateTopicStorage topicStorage,
         IGetForumsStorage getForumsStorage,
-        IIdentityProvider identityProvider)
-    : ICreateTopicUseCase
+        IIdentityProvider identityProvider)  
+    : IRequestHandler<CreateTopicCommand, TopicDto>
 {
-    public async Task<TopicDto> Execute(CreateTopicCommand command, CancellationToken cancellationToken)
+    public async Task<TopicDto> Handle(CreateTopicCommand command, CancellationToken cancellationToken)
     {
         await validator.ValidateAndThrowAsync(command, cancellationToken);
 

@@ -1,5 +1,6 @@
 ﻿using Domain.Authentication;
 using FluentValidation;
+using MediatR;
 
 namespace Domain.UseCases.SignOn;
 
@@ -7,9 +8,9 @@ internal class SignOnUseCase(
         IPasswordManager passwordManager,
         ISignOnStorage storage,
         IValidator<SignOnCommand> validator)
-    : ISignOnUseCase
+    : IRequestHandler<SignOnCommand, IIdentity>
 {
-    public async Task<IIdentity> Execute(SignOnCommand command, CancellationToken cancellationToken)
+    public async Task<IIdentity> Handle(SignOnCommand command, CancellationToken cancellationToken)
     {
         await validator.ValidateAndThrowAsync(command, cancellationToken);
 

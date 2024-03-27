@@ -1,6 +1,7 @@
 ﻿using Domain.Authentication;
 using Domain.Authorization;
 using FluentValidation;
+using MediatR;
 
 namespace Domain.UseCases.SignOut;
 
@@ -9,9 +10,9 @@ internal class SignOutUseCase(
         IIdentityProvider identityProvider,
         IValidator<SignOutCommand> validator,
         ISignOutStorage storage)
-    : ISignOutUseCase
+    : IRequestHandler<SignOutCommand>   
 {
-    public async Task Execute(SignOutCommand command, CancellationToken cancellationToken)
+    public async Task Handle(SignOutCommand command, CancellationToken cancellationToken)
     {
         intentionManager.ThrowIfForbidden(AccountIntention.SignOut);
         await validator.ValidateAsync(command, cancellationToken);

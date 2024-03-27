@@ -2,6 +2,7 @@
 using Domain.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
+using MediatR;
 using Microsoft.Extensions.Options;
 
 namespace Domain.UseCases.SignIn;
@@ -12,11 +13,11 @@ internal class SignInUseCase(
         IPasswordManager passwordManager,
         ISignInStorage storage,
         IValidator<SignInCommand> validator)
-    : ISignInUseCase
+    : IRequestHandler<SignInCommand, (IIdentity identity, string token)>
 {
     private readonly AuthenticationConfiguration _configuration = options.Value;
 
-    public async Task<(IIdentity identity, string token)> Execute(SignInCommand command, CancellationToken cancellationToken)
+    public async Task<(IIdentity identity, string token)> Handle(SignInCommand command, CancellationToken cancellationToken)
     {
         await validator.ValidateAndThrowAsync(command, cancellationToken);
 

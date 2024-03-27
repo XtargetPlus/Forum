@@ -9,7 +9,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Moq;
 using Moq.Language.Flow;
-using CreateTopicCommand = Domain.Dtos.CreateTopicCommand;
+using CreateTopicCommand = Domain.UseCases.CreateTopic.CreateTopicCommand;
 using IIdentity = Domain.Authentication.IIdentity;
 
 namespace Domain.Tests.CreateTopic;
@@ -54,7 +54,7 @@ public class CreateTopicUseCaseShould
         var forumId = Guid.Parse("1adbb258-866f-4991-bd4f-3232e0d28f50");
 
         _intentionIsAllowedSetup.Returns(false);
-        await _sut.Invoking(s => s.Execute(new CreateTopicCommand(forumId, "Something"), CancellationToken.None))
+        await _sut.Invoking(s => s.Handle(new CreateTopicCommand(forumId, "Something"), CancellationToken.None))
             .Should().ThrowAsync<IntentionManagerException>();
         _intentionManager.Verify(m => m.IsAllowed(TopicIntention.Create));
     }
@@ -67,7 +67,7 @@ public class CreateTopicUseCaseShould
         _intentionIsAllowedSetup.Returns(true);
         _getForumsSetup.ReturnsAsync(Array.Empty<ForumDto>());
 
-        (await _sut.Invoking(s => s.Execute(new CreateTopicCommand(forumId, "Some title"), CancellationToken.None))
+        (await _sut.Invoking(s => s.Handle(new CreateTopicCommand(forumId, "Some title"), CancellationToken.None))
             .Should().ThrowAsync<ForumNotFoundException>())
             .Which.ErrorCode.Should().Be(DomainErrorCode.Gone410);
     }
@@ -86,7 +86,7 @@ public class CreateTopicUseCaseShould
 
         var newTopic = new CreateTopicCommand(forumId, "Hello World");
 
-        var actual = await _sut.Execute(newTopic, CancellationToken.None);
+        var actual = await _sut.Handle(newTopic, CancellationToken.None);
 
         actual.Should().BeEquivalentTo(expected);
         _storage.Verify(s => s.CreateTopic(newTopic, userId, It.IsAny<CancellationToken>()));

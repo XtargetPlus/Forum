@@ -1,22 +1,10 @@
 ﻿using Domain.Dtos;
-using Domain.Monitoring;
+using MediatR;
 
 namespace Domain.UseCases.GetForums;
 
-internal class GetForumsUseCase(IGetForumsStorage storage, DomainMetrics metrics) : IGetForumsUseCase
+internal class GetForumsUseCase(IGetForumsStorage storage) : IRequestHandler<GetForumsQuery, IEnumerable<ForumDto>>
 {
-    public async Task<IEnumerable<ForumDto>> Execute(CancellationToken cancellationToken)
-    {
-        try
-        {
-            var result = await storage.GetForums(cancellationToken);
-            metrics.ForumsFetched(true);
-            return result;
-        }
-        catch
-        {
-            metrics.ForumsFetched(false);
-            throw;
-        }
-    }
+    public Task<IEnumerable<ForumDto>> Handle(GetForumsQuery query, CancellationToken cancellationToken) => 
+        storage.GetForums(cancellationToken);
 }

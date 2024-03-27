@@ -39,7 +39,7 @@ public class SignOnUseCaseShould
         var hash = new byte[] { 2 };
         _generatePasswordPartsSetup.Returns((salt, hash));
 
-        await _sut.Execute(new SignOnCommand("Qwerty1", "Qwerty2"), CancellationToken.None);
+        await _sut.Handle(new SignOnCommand("Qwerty1", "Qwerty2"), CancellationToken.None);
 
         _storage.Verify(s => s.CreateUser("Qwerty1", salt, hash, CancellationToken.None), Times.Once);
         _storage.VerifyNoOtherCalls();
@@ -53,7 +53,7 @@ public class SignOnUseCaseShould
         var userId = "f2f2d263-aa93-4012-b756-ef3042f91cd8";
         _createUserSetup.ReturnsAsync(Guid.Parse(userId));
 
-        var actual = await _sut.Execute(new SignOnCommand("Qwerty1", "Qwerty2"), CancellationToken.None);
+        var actual = await _sut.Handle(new SignOnCommand("Qwerty1", "Qwerty2"), CancellationToken.None);
         actual.UserId.Should().Be(userId);
     }
 }

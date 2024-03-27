@@ -1,5 +1,4 @@
-﻿using Domain.Dtos;
-using Domain.UseCases.GetTopics;
+﻿using Domain.UseCases.GetTopics;
 using FluentAssertions;
 
 namespace Domain.Tests.GetTopics;

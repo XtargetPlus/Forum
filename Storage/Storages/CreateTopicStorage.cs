@@ -4,7 +4,7 @@ using Domain.Dtos;
 using Domain.UseCases.CreateTopic;
 using Microsoft.EntityFrameworkCore;
 using Storage.Models;
-using CreateTopicCommand = Domain.Dtos.CreateTopicCommand;
+using CreateTopicCommand = Domain.UseCases.CreateTopic.CreateTopicCommand;
 
 namespace Storage.Storages;
 

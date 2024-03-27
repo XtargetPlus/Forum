@@ -1,5 +1,4 @@
 ﻿using Domain.Dtos;
-using Domain.Monitoring;
 using Domain.UseCases.GetForums;
 using FluentAssertions;
 using Moq;
@@ -18,7 +17,7 @@ public class GetForumsUseCaseShould
         _storage = new Mock<IGetForumsStorage>();
         _storageSetup = _storage.Setup(s => s.GetForums(It.IsAny<CancellationToken>()));
 
-        _sut = new GetForumsUseCase(_storage.Object, new DomainMetrics());
+        _sut = new GetForumsUseCase(_storage.Object);
     }
 
     [Fact]
@@ -31,7 +30,7 @@ public class GetForumsUseCaseShould
         };
         _storageSetup.ReturnsAsync(forums);
 
-        var actual = await _sut.Execute(CancellationToken.None);
+        var actual = await _sut.Handle(new GetForumsQuery(), CancellationToken.None);
         actual.Should().BeSameAs(forums);
         _storage.Verify(s => s.GetForums(CancellationToken.None), Times.Once);
         _storage.VerifyNoOtherCalls();
