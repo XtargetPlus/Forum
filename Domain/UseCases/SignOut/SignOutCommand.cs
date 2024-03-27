@@ -5,7 +5,7 @@ namespace Domain.UseCases.SignOut;
 
 public record SignOutCommand : IRequest, IMonitoredRequest
 {
-    private const string CounterName = "user_sign-out";
+    private const string CounterName = "user.sign_out";
 
     public void MonitorSuccess(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(true));
 

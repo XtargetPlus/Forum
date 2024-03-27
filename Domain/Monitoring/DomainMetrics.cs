@@ -1,10 +1,13 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
 namespace Domain.Monitoring;
 
 public class DomainMetrics
 {
+    internal static readonly ActivitySource ActivitySource = new("Domain");
+
     private readonly Meter _meter = new("Domain");
     private readonly ConcurrentDictionary<string, Counter<int>> _counters = new();
 

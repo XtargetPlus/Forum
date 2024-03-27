@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Diagnostics;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Domain.Monitoring;
@@ -15,6 +16,10 @@ internal class MonitoringPipelineBehavior<TRequest, TResponse>(
         CancellationToken cancellationToken)
     {
         if (request is not IMonitoredRequest monitoredRequest) return await next.Invoke();
+
+        using var activity = DomainMetrics.ActivitySource.StartActivity("usecase", ActivityKind.Internal, default(ActivityContext));
+
+        activity?.AddTag("forum.command", request.GetType().Name);
 
         try
         {

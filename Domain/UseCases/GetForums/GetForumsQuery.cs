@@ -6,7 +6,7 @@ namespace Domain.UseCases.GetForums;
 
 public record GetForumsQuery : IRequest<IEnumerable<ForumDto>>, IMonitoredRequest
 {
-    private const string CounterName = "forums_fetched";
+    private const string CounterName = "forums.fetched";
 
     public void MonitorSuccess(DomainMetrics metrics) => metrics.IncrementCount(CounterName, 1, DomainMetrics.ResultTags(true));
 
