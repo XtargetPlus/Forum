@@ -1,10 +1,7 @@
 ﻿using Domain.Authorization;
 using Domain.Dtos;
-using Domain.Monitoring;
 using Domain.UseCases.CreateForum;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Moq;
 using Moq.Language.Flow;
 
@@ -18,11 +15,6 @@ public class CreateForumUseCaseShould
 
     public CreateForumUseCaseShould()
     {
-        var validator = new Mock<IValidator<CreateForumCommand>>();
-        validator
-            .Setup(v => v.ValidateAsync(It.IsAny<CreateForumCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult());
-
         var intentionManager = new Mock<IIntentionManager>();
         intentionManager
             .Setup(m => m.IsAllowed(It.IsAny<ForumIntention>()))
@@ -31,7 +23,7 @@ public class CreateForumUseCaseShould
         _storage = new Mock<ICreateForumStorage>(); 
         _createForumSetup = _storage.Setup(s => s.CreateForum(It.IsAny<CreateForumCommand>(), It.IsAny<CancellationToken>()));
 
-        _sut = new CreateForumUseCase(validator.Object, intentionManager.Object, _storage.Object);
+        _sut = new CreateForumUseCase(intentionManager.Object, _storage.Object);
     }
 
     [Fact]

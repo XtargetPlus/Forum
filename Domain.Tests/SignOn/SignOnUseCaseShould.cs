@@ -1,8 +1,6 @@
 ﻿using Domain.Authentication;
 using Domain.UseCases.SignOn;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Moq;
 using Moq.Language.Flow;
 
@@ -24,12 +22,7 @@ public class SignOnUseCaseShould
         _storage = new Mock<ISignOnStorage>();
         _createUserSetup = _storage.Setup(s => s.CreateUser(It.IsAny<string>(), It.IsAny<byte[]>(), It.IsAny<byte[]>(), It.IsAny<CancellationToken>()));
 
-        var validator = new Mock<IValidator<SignOnCommand>>();
-        validator
-            .Setup(v => v.ValidateAsync(It.IsAny<SignOnCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult());
-
-        _sut = new SignOnUseCase(passwordManager.Object, _storage.Object, validator.Object);
+        _sut = new SignOnUseCase(passwordManager.Object, _storage.Object);
     }
 
     [Fact]

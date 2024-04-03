@@ -18,7 +18,14 @@ internal static class OpenTelemetryServiceCollectionExtensions
             }))
         .WithTracing(builder => builder
             .ConfigureResource(r => r.AddService("Forum"))
-            .AddAspNetCoreInstrumentation()
+            .AddAspNetCoreInstrumentation(opt =>
+            {
+                opt.Filter += context => 
+                    !context.Request.Path.Value!.Contains("metrics", StringComparison.InvariantCultureIgnoreCase) &&
+                    !context.Request.Path.Value!.Contains("swagger", StringComparison.InvariantCultureIgnoreCase);
+                opt.EnrichWithHttpResponse = (activity, response) =>
+                    activity.AddTag("error", response.StatusCode >= 400);
+            })
             .AddEntityFrameworkCoreInstrumentation(cfg => cfg.SetDbStatementForText = true)
             .AddSource("Domain")
             .AddJaegerExporter(cfg => cfg.Endpoint = new Uri(configuration.GetConnectionString("Tracing")!)))

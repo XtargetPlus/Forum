@@ -5,8 +5,6 @@ using Domain.Exceptions;
 using Domain.UseCases.CreateTopic;
 using Domain.UseCases.GetForums;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Moq;
 using Moq.Language.Flow;
 using CreateTopicCommand = Domain.UseCases.CreateTopic.CreateTopicCommand;
@@ -40,12 +38,7 @@ public class CreateTopicUseCaseShould
         _intentionManager = new Mock<IIntentionManager>();
         _intentionIsAllowedSetup = _intentionManager.Setup(m => m.IsAllowed(It.IsAny<TopicIntention>()));
 
-        var validator = new Mock<IValidator<CreateTopicCommand>>();
-        validator
-            .Setup(v => v.ValidateAsync(It.IsAny<CreateTopicCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult());
-
-        _sut = new CreateTopicUseCase(validator.Object, _intentionManager.Object, _storage.Object, getForumsStorage.Object, identityProvider.Object);
+        _sut = new CreateTopicUseCase(_intentionManager.Object, _storage.Object, getForumsStorage.Object, identityProvider.Object);
     }
 
     [Fact]

@@ -2,13 +2,11 @@
 using Domain.Authorization;
 using Domain.Dtos;
 using Domain.UseCases.GetForums;
-using FluentValidation;
 using MediatR;
 
 namespace Domain.UseCases.CreateTopic;
 
 internal class CreateTopicUseCase(
-        IValidator<CreateTopicCommand> validator,
         IIntentionManager intentionManager,
         ICreateTopicStorage topicStorage,
         IGetForumsStorage getForumsStorage,
@@ -17,8 +15,6 @@ internal class CreateTopicUseCase(
 {
     public async Task<TopicDto> Handle(CreateTopicCommand command, CancellationToken cancellationToken)
     {
-        await validator.ValidateAndThrowAsync(command, cancellationToken);
-
         // checking rights 
         intentionManager.ThrowIfForbidden(TopicIntention.Create);
         await getForumsStorage.ThrowIfNotFound(command.ForumId, cancellationToken);

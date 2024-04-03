@@ -4,11 +4,11 @@ using System.Diagnostics.Metrics;
 
 namespace Domain.Monitoring;
 
-public class DomainMetrics
+public class DomainMetrics(IMeterFactory meterFactory)
 {
     internal static readonly ActivitySource ActivitySource = new("Domain");
 
-    private readonly Meter _meter = new("Domain");
+    private readonly Meter _meter = meterFactory.Create("Domain");
     private readonly ConcurrentDictionary<string, Counter<int>> _counters = new();
 
     public void IncrementCount(string name, int value, IDictionary<string, object?>? additionalTags = null)

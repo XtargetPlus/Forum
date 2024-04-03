@@ -3,7 +3,6 @@ using Domain.Authorization;
 using Domain.Exceptions;
 using Domain.UseCases.SignOut;
 using FluentAssertions;
-using FluentValidation;
 using Moq;
 using Moq.Language.Flow;
 
@@ -31,7 +30,6 @@ public class SignOutUseCaseShould
         _sut = new SignOutUseCase(
             intentionManager.Object,
             identityProvider.Object, 
-            new Mock<IValidator<SignOutCommand>>().Object, 
             _storage.Object);
     }
 

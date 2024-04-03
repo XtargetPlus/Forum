@@ -3,7 +3,6 @@ using Domain.Dtos;
 using Domain.UseCases.SignIn;
 using FluentAssertions;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Language.Flow;
@@ -40,12 +39,7 @@ public class SignInUseCaseShould
         _findUserSetup = _storage.Setup(s => s.FindUser(It.IsAny<string>(), It.IsAny<CancellationToken>()));
         _createSessionSetup = _storage.Setup(s => s.CreateSession(It.IsAny<Guid>(), It.IsAny<DateTimeOffset>(), It.IsAny<CancellationToken>()));
 
-        var validator = new Mock<IValidator<SignInCommand>>();
-        validator
-            .Setup(v => v.ValidateAsync(It.IsAny<SignInCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult());
-
-        _sut = new SignInUseCase(options.Object, _encryptor.Object, passwordManager.Object, _storage.Object, validator.Object);
+        _sut = new SignInUseCase(options.Object, _encryptor.Object, passwordManager.Object, _storage.Object);
     }
 
     [Fact]

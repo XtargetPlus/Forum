@@ -3,8 +3,6 @@ using Domain.Exceptions;
 using Domain.UseCases.GetForums;
 using Domain.UseCases.GetTopics;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Moq;
 using Moq.Language.Flow;
 
@@ -19,18 +17,13 @@ public class GetTopicsUseCaseShould
 
     public GetTopicsUseCaseShould()
     {
-        var validator = new Mock<IValidator<GetTopicsQuery>>();
-        validator
-            .Setup(v => v.ValidateAsync(It.IsAny<GetTopicsQuery>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult());
-
         _storage = new Mock<IGetTopicsStorage>();
         var forumsStorage = new Mock<IGetForumsStorage>();
         
         _getTopicsSetup = _storage.Setup(s => s.GetTopics(It.IsAny<GetTopicsQuery>(), It.IsAny<CancellationToken>()));
         _getForumsSetup = forumsStorage.Setup(s => s.GetForums(It.IsAny<CancellationToken>()));
 
-        _sut = new GetTopicsUseCase(_storage.Object, forumsStorage.Object, validator.Object);
+        _sut = new GetTopicsUseCase(_storage.Object, forumsStorage.Object);
     }
 
     [Fact]

@@ -11,16 +11,13 @@ internal class SignInUseCase(
         IOptions<AuthenticationConfiguration> options,
         ISymmetricEncryptor encryptor,
         IPasswordManager passwordManager,
-        ISignInStorage storage,
-        IValidator<SignInCommand> validator)
+        ISignInStorage storage)
     : IRequestHandler<SignInCommand, (IIdentity identity, string token)>
 {
     private readonly AuthenticationConfiguration _configuration = options.Value;
 
     public async Task<(IIdentity identity, string token)> Handle(SignInCommand command, CancellationToken cancellationToken)
     {
-        await validator.ValidateAndThrowAsync(command, cancellationToken);
-
         var recognizedUser = await storage.FindUser(command.Login, cancellationToken);
         if (recognizedUser is null) throw new ValidationException(new ValidationFailure[]
         {
