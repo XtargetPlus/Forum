@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Dtos;
-using Domain.UseCases.GetTopics;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.GetTopics;
 using Microsoft.EntityFrameworkCore;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class GetTopicsStorage(
-        IMapper dataMapper, 
-        AppDbContext dbContext) 
+        IMapper dataMapper,
+        AppDbContext dbContext)
     : IGetTopicsStorage
 {
     public async Task<(IEnumerable<TopicDto> resources, int totalCount)> GetTopics(GetTopicsQuery query, CancellationToken cancellationToken)

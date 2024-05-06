@@ -1,7 +1,7 @@
 ﻿using API.Authentication;
-using Domain.Authentication;
+using Forum.Domain.Authentication;
 
-namespace API.Middlewares; 
+namespace API.Middlewares;
 
 public class AuthenticationMiddleware(RequestDelegate next)
 {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Authorization;
+﻿namespace Forum.Domain.Authorization;
 
 public interface IIntentionManager
 {

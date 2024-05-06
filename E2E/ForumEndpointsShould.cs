@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Json;
-using Domain.Dtos;
 using FluentAssertions;
+using Forum.Domain.Dtos;
 
-namespace E2E;
+namespace Forum.E2E;
 
 public class ForumEndpointsShould(ForumApiApplicationFactory factory) : IClassFixture<ForumApiApplicationFactory>
 {
@@ -20,7 +20,7 @@ public class ForumEndpointsShould(ForumApiApplicationFactory factory) : IClassFi
             .Should().NotBeNull().And
             .Subject.As<ForumDto[]>().Should().NotContain(f => f.Title.Equals(forumTitle));
 
-        using var response = await httpClient.PostAsync("api/forums", 
+        using var response = await httpClient.PostAsync("api/forums",
             JsonContent.Create(new { Title = forumTitle }));
 
         response.IsSuccessStatusCode.Should().BeTrue();

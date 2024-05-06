@@ -1,4 +1,4 @@
-﻿namespace Domain.Authentication;
+﻿namespace Forum.Domain.Authentication;
 
 public class Identity(Guid userId, Guid sessionId) : IIdentity
 {

@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Storage\Storage.csproj" PrivateAccess="All" />
+    <ProjectReference Include="..\Storage\Forum.Storage.csproj" PrivateAccess="All" />
   </ItemGroup>
 
 </Project>

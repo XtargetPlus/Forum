@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using Forum.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;

@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using Forum.Domain.Exceptions;
 
-namespace Domain.Authorization;
+namespace Forum.Domain.Authorization;
 
 internal static class IntentionManagerExtensions
 {

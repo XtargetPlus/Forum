@@ -1,14 +1,14 @@
-﻿using Domain.Authentication;
-using Domain.Authorization;
+﻿using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
 using MediatR;
 
-namespace Domain.UseCases.SignOut;
+namespace Forum.Domain.UseCases.SignOut;
 
 internal class SignOutUseCase(
         IIntentionManager intentionManager,
         IIdentityProvider identityProvider,
         ISignOutStorage storage)
-    : IRequestHandler<SignOutCommand>   
+    : IRequestHandler<SignOutCommand>
 {
     public async Task Handle(SignOutCommand command, CancellationToken cancellationToken)
     {

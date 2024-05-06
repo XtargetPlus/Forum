@@ -1,17 +1,17 @@
 ﻿using System.Security.Cryptography;
+using Forum.Storage;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Storage;
 using Testcontainers.PostgreSql;
 
-namespace E2E;
+namespace Forum.E2E;
 
 public class ForumApiApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder().Build();
-    
+
     public async Task InitializeAsync()
     {
         await _dbContainer.StartAsync();

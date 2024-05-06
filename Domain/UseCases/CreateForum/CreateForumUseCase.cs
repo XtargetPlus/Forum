@@ -1,8 +1,8 @@
-﻿using Domain.Authorization;
-using Domain.Dtos;
+﻿using Forum.Domain.Authorization;
+using Forum.Domain.Dtos;
 using MediatR;
 
-namespace Domain.UseCases.CreateForum;
+namespace Forum.Domain.UseCases.CreateForum;
 
 internal class CreateForumUseCase(IIntentionManager intentionManager, ICreateForumStorage storage) : IRequestHandler<CreateForumCommand, ForumDto>
 {

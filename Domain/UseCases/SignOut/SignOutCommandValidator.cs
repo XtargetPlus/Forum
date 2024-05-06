@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
 
-namespace Domain.UseCases.SignOut;
+namespace Forum.Domain.UseCases.SignOut;
 
 internal class SignOutCommandValidator : AbstractValidator<SignOutCommand>;

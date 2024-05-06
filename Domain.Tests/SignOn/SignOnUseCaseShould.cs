@@ -1,10 +1,10 @@
-﻿using Domain.Authentication;
-using Domain.UseCases.SignOn;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.UseCases.SignOn;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.SignOn;
+namespace Forum.Domain.Tests.SignOn;
 
 public class SignOnUseCaseShould
 {
@@ -42,7 +42,7 @@ public class SignOnUseCaseShould
     public async Task ReturnIdentityOfNewlyCreatedUser()
     {
         _generatePasswordPartsSetup.Returns((new byte[] { 1 }, new byte[] { 2 }));
-        
+
         var userId = "f2f2d263-aa93-4012-b756-ef3042f91cd8";
         _createUserSetup.ReturnsAsync(Guid.Parse(userId));
 

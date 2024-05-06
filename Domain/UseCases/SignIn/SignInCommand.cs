@@ -1,8 +1,8 @@
-﻿using Domain.Authentication;
-using Domain.Monitoring;
+﻿using Forum.Domain.Authentication;
+using Forum.Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.SignIn;
+namespace Forum.Domain.UseCases.SignIn;
 
 public record SignInCommand(string Login, string Password) : IRequest<(IIdentity identity, string token)>, IMonitoredRequest
 {

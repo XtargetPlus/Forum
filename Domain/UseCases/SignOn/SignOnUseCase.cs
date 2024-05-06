@@ -1,7 +1,7 @@
-﻿using Domain.Authentication;
+﻿using Forum.Domain.Authentication;
 using MediatR;
 
-namespace Domain.UseCases.SignOn;
+namespace Forum.Domain.UseCases.SignOn;
 
 internal class SignOnUseCase(IPasswordManager passwordManager, ISignOnStorage storage) : IRequestHandler<SignOnCommand, IIdentity>
 {

@@ -1,12 +1,12 @@
-﻿using Domain.Authentication;
-using Domain.Authorization;
-using Domain.Exceptions;
-using Domain.UseCases.SignOut;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
+using Forum.Domain.Exceptions;
+using Forum.Domain.UseCases.SignOut;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.SignOut;
+namespace Forum.Domain.Tests.SignOut;
 
 public class SignOutUseCaseShould
 {
@@ -29,7 +29,7 @@ public class SignOutUseCaseShould
 
         _sut = new SignOutUseCase(
             intentionManager.Object,
-            identityProvider.Object, 
+            identityProvider.Object,
             _storage.Object);
     }
 
@@ -51,7 +51,7 @@ public class SignOutUseCaseShould
         _removeSessionSetup.Returns(Task.CompletedTask);
 
         await _sut.Handle(new SignOutCommand(), CancellationToken.None);
-        
+
         _storage.Verify(s => s.RemoveSession(sessionId, It.IsAny<CancellationToken>()), Times.Once);
         _storage.VerifyNoOtherCalls();
     }

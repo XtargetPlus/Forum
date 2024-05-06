@@ -1,12 +1,12 @@
 ﻿using System.Net;
-using Domain.Authentication;
-using Domain.Authorization;
-using Domain.Exceptions;
-using Domain.UseCases.CreateForum;
 using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
+using Forum.Domain.Exceptions;
+using Forum.Domain.UseCases.CreateForum;
 using Moq;
 
-namespace Domain.Tests.Authorization;
+namespace Forum.Domain.Tests.Authorization;
 
 public class IntentionManagerShould
 {
@@ -38,7 +38,7 @@ public class IntentionManagerShould
             .Returns(new Identity(Guid.Parse("f2d6323a-6112-4c7b-9b3d-893c761ec265"), Guid.Empty));
 
         var sut = new IntentionManager(
-            new IIntentionResolver[] { resolver.Object }, 
+            new IIntentionResolver[] { resolver.Object },
             identityProvider.Object);
 
         sut.IsAllowed(ForumIntention.Create).Should().Be(expected);

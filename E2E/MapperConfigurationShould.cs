@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace E2E;
+namespace Forum.E2E;
 
 public class MapperConfigurationShould(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {

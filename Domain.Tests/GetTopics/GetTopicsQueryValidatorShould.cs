@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.GetTopics;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.GetTopics;
 
-namespace Domain.Tests.GetTopics;
+namespace Forum.Domain.Tests.GetTopics;
 
 public class GetTopicsQueryValidatorShould
 {
@@ -17,7 +17,7 @@ public class GetTopicsQueryValidatorShould
     public static IEnumerable<object[]> GetInvalidQuery()
     {
         var query = new GetTopicsQuery(Guid.Parse("f8d2a603-59ea-4578-81ee-9264fa851765"), 10, 5);
-        yield return new object[] { query with { ForumId = Guid.Empty} };
+        yield return new object[] { query with { ForumId = Guid.Empty } };
         yield return new object[] { query with { Skip = -10 } };
         yield return new object[] { query with { Take = -10 } };
     }

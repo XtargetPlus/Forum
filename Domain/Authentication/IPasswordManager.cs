@@ -1,4 +1,4 @@
-﻿namespace Domain.Authentication;
+﻿namespace Forum.Domain.Authentication;
 
 public interface IPasswordManager
 {

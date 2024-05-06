@@ -1,9 +1,9 @@
-﻿using Domain.Authentication;
-using Domain.UseCases.SignOut;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.UseCases.SignOut;
 using Moq;
 
-namespace Domain.Tests.Authorization;
+namespace Forum.Domain.Tests.Authorization;
 
 public class AccountIntentionResolverShould
 {

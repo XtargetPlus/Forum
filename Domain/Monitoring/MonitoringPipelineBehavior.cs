@@ -2,17 +2,17 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Domain.Monitoring;
+namespace Forum.Domain.Monitoring;
 
 internal class MonitoringPipelineBehavior<TRequest, TResponse>(
     DomainMetrics metrics,
-    ILogger<MonitoringPipelineBehavior<TRequest, TResponse>> logger) 
-    : IPipelineBehavior<TRequest, TResponse> 
+    ILogger<MonitoringPipelineBehavior<TRequest, TResponse>> logger)
+    : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     public async Task<TResponse> Handle(
-        TRequest request, 
-        RequestHandlerDelegate<TResponse> next, 
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
         if (request is not IMonitoredRequest monitoredRequest) return await next.Invoke();
@@ -24,8 +24,11 @@ internal class MonitoringPipelineBehavior<TRequest, TResponse>(
         try
         {
             var result = await next.Invoke();
+
+            logger.LogInformation("Command successfully handled {Command}", request);
             monitoredRequest.MonitorSuccess(metrics);
             activity?.AddTag("error", false);
+
             return result;
         }
         catch (Exception ex)

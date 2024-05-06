@@ -1,8 +1,8 @@
-﻿using Domain.Dtos;
-using Domain.UseCases.GetForums;
+﻿using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.GetForums;
 using MediatR;
 
-namespace Domain.UseCases.GetTopics;
+namespace Forum.Domain.UseCases.GetTopics;
 
 internal class GetTopicsUseCase(
         IGetTopicsStorage topicsStorage,

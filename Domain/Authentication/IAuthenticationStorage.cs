@@ -1,6 +1,6 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.Authentication;
+namespace Forum.Domain.Authentication;
 
 public interface IAuthenticationStorage
 {

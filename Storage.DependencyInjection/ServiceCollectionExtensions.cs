@@ -1,17 +1,19 @@
 ﻿using System.Reflection;
-using Domain.Authentication;
-using Domain.UseCases.CreateForum;
-using Domain.UseCases.CreateTopic;
-using Domain.UseCases.GetForums;
-using Domain.UseCases.GetTopics;
-using Domain.UseCases.SignIn;
-using Domain.UseCases.SignOn;
-using Domain.UseCases.SignOut;
 using Microsoft.Extensions.DependencyInjection;
-using Storage.Storages;
 using Microsoft.EntityFrameworkCore;
+using Forum.Domain;
+using Forum.Domain.UseCases;
+using Forum.Domain.UseCases.SignOn;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.UseCases.CreateForum;
+using Forum.Domain.UseCases.SignOut;
+using Forum.Domain.UseCases.GetTopics;
+using Forum.Domain.UseCases.GetForums;
+using Forum.Domain.UseCases.SignIn;
+using Forum.Domain.Authentication;
+using Forum.Storage.Storages;
 
-namespace Storage.DependencyInjection;
+namespace Forum.Storage.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
@@ -26,7 +28,7 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICreateForumStorage, CreateForumStorage>()
             .AddScoped<ICreateTopicStorage, CreateTopicStorage>()
             .AddScoped<IGetTopicsStorage, GetTopicsStorage>()
-            .AddScoped<IMomentProvider, MomentProvider>()
+            .AddScoped<IDomainEventStorage, DomainEventStorage>()
             .AddScoped<IGuidFactory, GuidFactory>()
             .AddDbContextPool<AppDbContext>(opt =>
             {
@@ -34,6 +36,10 @@ public static class ServiceCollectionExtensions
                     dbConnectionString,
                     postOpt => { postOpt.MigrationsAssembly("Storage"); });
             });
+
+        services
+            .AddSingleton(TimeProvider.System)
+            .AddSingleton<IUnitOfWork>(p => new UnitOfWork(p));
 
         services.AddMemoryCache();
 

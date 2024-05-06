@@ -1,7 +1,7 @@
-﻿using Domain.Authentication;
-using Domain.Authorization;
+﻿using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
 
-namespace Domain.UseCases.SignOut;
+namespace Forum.Domain.UseCases.SignOut;
 
 internal class AccountIntentionResolver : IIntentionResolver<AccountIntention>
 {

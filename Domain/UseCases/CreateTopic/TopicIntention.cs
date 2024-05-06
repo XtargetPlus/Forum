@@ -1,4 +1,4 @@
-﻿namespace Domain.UseCases.CreateTopic;
+﻿namespace Forum.Domain.UseCases.CreateTopic;
 
 public enum TopicIntention
 {

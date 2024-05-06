@@ -1,10 +1,10 @@
-﻿using Domain.Dtos;
-using Domain.UseCases.GetForums;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.GetForums;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.GetForums;
+namespace Forum.Domain.Tests.GetForums;
 
 public class GetForumsUseCaseShould
 {

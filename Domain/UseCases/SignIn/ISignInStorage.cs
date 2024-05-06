@@ -1,6 +1,6 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.UseCases.SignIn;
+namespace Forum.Domain.UseCases.SignIn;
 
 public interface ISignInStorage
 {

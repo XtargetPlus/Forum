@@ -1,4 +1,4 @@
-﻿namespace Domain.Authentication;
+﻿namespace Forum.Domain.Authentication;
 
 internal class IdentityProvider : IIdentityProvider
 {

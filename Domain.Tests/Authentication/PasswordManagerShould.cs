@@ -1,7 +1,7 @@
-﻿using Domain.Authentication;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authentication;
 
-namespace Domain.Tests.Authentication;
+namespace Forum.Domain.Tests.Authentication;
 
 public class PasswordManagerShould
 {

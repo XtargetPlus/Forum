@@ -1,4 +1,4 @@
-﻿namespace Domain.UseCases.SignOn;
+﻿namespace Forum.Domain.UseCases.SignOn;
 
 public interface ISignOnStorage
 {

@@ -1,10 +1,10 @@
 ﻿using API.Dtos.Requests;
 using API.Dtos.Responses;
 using AutoMapper;
-using Domain.UseCases.CreateForum;
-using Domain.UseCases.CreateTopic;
-using Domain.UseCases.GetForums;
-using Domain.UseCases.GetTopics;
+using Forum.Domain.UseCases.CreateForum;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.UseCases.GetForums;
+using Forum.Domain.UseCases.GetTopics;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

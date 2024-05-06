@@ -1,8 +1,8 @@
-﻿using Domain.Dtos;
-using Domain.Monitoring;
+﻿using Forum.Domain.Dtos;
+using Forum.Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.CreateTopic;
+namespace Forum.Domain.UseCases.CreateTopic;
 
 public record CreateTopicCommand(Guid ForumId, string Title) : IRequest<TopicDto>, IMonitoredRequest
 {

@@ -1,6 +1,6 @@
-﻿using Domain.UseCases.SignOut;
+﻿using Forum.Domain.UseCases.SignOut;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class SignOutStorage : ISignOutStorage
 {

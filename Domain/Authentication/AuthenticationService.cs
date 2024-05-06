@@ -2,13 +2,13 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Domain.Authentication;
+namespace Forum.Domain.Authentication;
 
 internal class AuthenticationService(
-        ILogger<AuthenticationService> logger, 
+        ILogger<AuthenticationService> logger,
         IAuthenticationStorage storage,
         ISymmetricDecryptor decryptor,
-        IOptions<AuthenticationConfiguration> options) 
+        IOptions<AuthenticationConfiguration> options)
     : IAuthenticationService
 {
     private readonly AuthenticationConfiguration _configuration = options.Value;

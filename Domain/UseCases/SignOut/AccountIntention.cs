@@ -1,4 +1,4 @@
-﻿namespace Domain.UseCases.SignOut;
+﻿namespace Forum.Domain.UseCases.SignOut;
 
 public enum AccountIntention
 {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Dtos;
+﻿namespace Forum.Domain.Dtos;
 
 public class ForumDto
 {

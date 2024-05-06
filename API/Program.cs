@@ -2,9 +2,9 @@ using System.Reflection;
 using API.Authentication;
 using API.Middlewares;
 using API.Monitoring;
-using Domain.Authentication;
-using Domain.DependencyInjection;
-using Storage.DependencyInjection;
+using Forum.Domain.Authentication;
+using Forum.Domain.DependencyInjection;
+using Forum.Storage.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

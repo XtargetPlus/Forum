@@ -1,8 +1,8 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.UseCases.CreateForum;
+namespace Forum.Domain.UseCases.CreateForum;
 
-public interface ICreateForumStorage
+public interface ICreateForumStorage : IStorage
 {
     Task<ForumDto> CreateForum(CreateForumCommand command, CancellationToken cancellationToken);
 }

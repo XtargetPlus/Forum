@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.CreateTopic;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.CreateTopic;
 
-namespace Domain.Tests.CreateTopic;
+namespace Forum.Domain.Tests.CreateTopic;
 
 public class CreateTopicCommandValidatorShould
 {

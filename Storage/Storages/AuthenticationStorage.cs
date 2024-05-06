@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Authentication;
-using Domain.Dtos;
+using Forum.Domain.Authentication;
+using Forum.Domain.Dtos;
 using Microsoft.EntityFrameworkCore;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class AuthenticationStorage(
-        AppDbContext dbContext, 
-        IMapper dataMapper) 
+        AppDbContext dbContext,
+        IMapper dataMapper)
     : IAuthenticationStorage
 {
     public Task<SessionDto?> FindSession(Guid sessionId, CancellationToken cancellationToken) => dbContext.Sessions

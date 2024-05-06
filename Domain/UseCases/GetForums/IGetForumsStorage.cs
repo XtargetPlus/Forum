@@ -1,6 +1,6 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.UseCases.GetForums;
+namespace Forum.Domain.UseCases.GetForums;
 
 public interface IGetForumsStorage
 {

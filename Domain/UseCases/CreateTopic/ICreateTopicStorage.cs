@@ -1,8 +1,8 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.UseCases.CreateTopic;
+namespace Forum.Domain.UseCases.CreateTopic;
 
-public interface ICreateTopicStorage
+public interface ICreateTopicStorage : IStorage
 {
-    Task<TopicDto> CreateTopic(CreateTopicCommand command, Guid userId, CancellationToken cancellationToken); 
+    Task<TopicDto> CreateTopic(CreateTopicCommand command, Guid userId, CancellationToken cancellationToken);
 }

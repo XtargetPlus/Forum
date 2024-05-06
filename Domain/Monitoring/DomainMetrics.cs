@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Domain.Monitoring;
+namespace Forum.Domain.Monitoring;
 
 public class DomainMetrics(IMeterFactory meterFactory)
 {

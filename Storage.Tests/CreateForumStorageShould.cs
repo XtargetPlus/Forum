@@ -1,9 +1,9 @@
-﻿using Domain.UseCases.CreateForum;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.CreateForum;
+using Forum.Storage.Storages;
 using Microsoft.EntityFrameworkCore;
-using Storage.Storages;
 
-namespace Storage.Tests;
+namespace Forum.Storage.Tests;
 
 public class CreateForumStorageShould : IClassFixture<StorageTextFixture>
 {
@@ -27,7 +27,7 @@ public class CreateForumStorageShould : IClassFixture<StorageTextFixture>
             .Where(f => f.Id == forum.ForumId)
             .Select(f => f.Title)
             .ToArrayAsync();
-        
+
         forumTitles.Should().HaveCount(1).And.Contain("Qwerty1");
     }
 }

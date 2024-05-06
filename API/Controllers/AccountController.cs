@@ -1,7 +1,7 @@
 ﻿using API.Authentication;
 using API.Dtos.Requests;
-using Domain.UseCases.SignIn;
-using Domain.UseCases.SignOn;
+using Forum.Domain.UseCases.SignIn;
+using Forum.Domain.UseCases.SignOn;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ namespace API.Controllers;
 [ApiController]
 public class AccountController(IMediator mediator) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("signon")]
     public async Task<IActionResult> SignOn(
         SignOnRequest request,
         CancellationToken cancellationToken)

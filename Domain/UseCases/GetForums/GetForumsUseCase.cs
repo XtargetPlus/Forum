@@ -1,7 +1,7 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 using MediatR;
 
-namespace Domain.UseCases.GetForums;
+namespace Forum.Domain.UseCases.GetForums;
 
 internal class GetForumsUseCase(IGetForumsStorage storage) : IRequestHandler<GetForumsQuery, IEnumerable<ForumDto>>
 {

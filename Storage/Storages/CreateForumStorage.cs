@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Dtos;
-using Domain.UseCases.CreateForum;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.CreateForum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using Storage.Models;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class CreateForumStorage(
         IMapper dataMapper,
@@ -16,7 +15,7 @@ internal class CreateForumStorage(
 {
     public async Task<ForumDto> CreateForum(CreateForumCommand command, CancellationToken cancellationToken)
     {
-        var forum = new Forum
+        var forum = new Models.Forum
         {
             Title = command.Title,
         };

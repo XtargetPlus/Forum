@@ -1,6 +1,6 @@
-﻿using Domain.Dtos;
+﻿using Forum.Domain.Dtos;
 
-namespace Domain.UseCases.GetTopics;
+namespace Forum.Domain.UseCases.GetTopics;
 
 public interface IGetTopicsStorage
 {

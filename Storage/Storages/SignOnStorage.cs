@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.SignOn;
-using Storage.Models;
+﻿using Forum.Domain.UseCases.SignOn;
+using Forum.Storage.Models;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class SignOnStorage(AppDbContext dbContext) : ISignOnStorage
 {
@@ -15,7 +15,7 @@ internal class SignOnStorage(AppDbContext dbContext) : ISignOnStorage
         };
         await dbContext.Users.AddAsync(user, cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
-        
+
         return user.Id;
     }
 }

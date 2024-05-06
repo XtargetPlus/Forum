@@ -1,6 +1,6 @@
-﻿namespace Domain.Exceptions;
+﻿namespace Forum.Domain.Exceptions;
 
 public abstract class DomainException(DomainErrorCode errorCode, string message) : Exception(message)
 {
-    public DomainErrorCode ErrorCode{ get; } = errorCode;
+    public DomainErrorCode ErrorCode { get; } = errorCode;
 }

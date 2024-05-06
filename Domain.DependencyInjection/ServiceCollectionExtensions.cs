@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using Domain.Authentication;
-using Domain.Authorization;
-using Domain.Monitoring;
-using Domain.UseCases;
-using Domain.UseCases.CreateForum;
-using Domain.UseCases.CreateTopic;
-using Domain.UseCases.SignOut;
 using FluentValidation;
+using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
+using Forum.Domain.Monitoring;
+using Forum.Domain.UseCases.CreateForum;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.UseCases.SignOut;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Domain.DependencyInjection;
+namespace Forum.Domain.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {

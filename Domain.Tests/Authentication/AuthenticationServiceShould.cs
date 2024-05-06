@@ -1,13 +1,13 @@
 ﻿using System.Security.Cryptography;
-using Domain.Authentication;
-using Domain.Dtos;
 using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.Dtos;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.Authentication;
+namespace Forum.Domain.Tests.Authentication;
 
 public class AuthenticationServiceShould
 {
@@ -29,10 +29,10 @@ public class AuthenticationServiceShould
             });
 
         var storage = new Mock<IAuthenticationStorage>();
-        _findUserIdSetup = storage.Setup(s => s.FindSession(It.IsAny<Guid>(), It.IsAny<CancellationToken>())); 
+        _findUserIdSetup = storage.Setup(s => s.FindSession(It.IsAny<Guid>(), It.IsAny<CancellationToken>()));
 
         _sut = new AuthenticationService(
-            NullLogger<AuthenticationService>.Instance, 
+            NullLogger<AuthenticationService>.Instance,
             storage.Object,
             decryptor.Object,
             options.Object);

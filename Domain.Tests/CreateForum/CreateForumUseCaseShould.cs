@@ -1,11 +1,11 @@
-﻿using Domain.Authorization;
-using Domain.Dtos;
-using Domain.UseCases.CreateForum;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authorization;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.CreateForum;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.CreateForum;
+namespace Forum.Domain.Tests.CreateForum;
 
 public class CreateForumUseCaseShould
 {
@@ -20,7 +20,7 @@ public class CreateForumUseCaseShould
             .Setup(m => m.IsAllowed(It.IsAny<ForumIntention>()))
             .Returns(true);
 
-        _storage = new Mock<ICreateForumStorage>(); 
+        _storage = new Mock<ICreateForumStorage>();
         _createForumSetup = _storage.Setup(s => s.CreateForum(It.IsAny<CreateForumCommand>(), It.IsAny<CancellationToken>()));
 
         _sut = new CreateForumUseCase(intentionManager.Object, _storage.Object);

@@ -1,7 +1,7 @@
-﻿using Domain.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using Forum.Domain.Exceptions;
 
-namespace Domain.UseCases.CreateForum;
+namespace Forum.Domain.UseCases.CreateForum;
 
 internal class CreateForumCommandValidator : AbstractValidator<CreateForumCommand>
 {

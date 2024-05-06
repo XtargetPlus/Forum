@@ -1,4 +1,4 @@
-﻿namespace Storage.Tests;
+﻿namespace Forum.Storage.Tests;
 
 public class AuthenticationStorageShould
 {

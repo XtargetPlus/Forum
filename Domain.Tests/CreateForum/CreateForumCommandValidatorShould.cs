@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.CreateForum;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.CreateForum;
 
-namespace Domain.Tests.CreateForum;
+namespace Forum.Domain.Tests.CreateForum;
 
 public class CreateForumCommandValidatorShould
 {
@@ -10,7 +10,7 @@ public class CreateForumCommandValidatorShould
     public static IEnumerable<object[]> GetInvalidCommand()
     {
         var validCommand = new CreateForumCommand("Test");
-        
+
         yield return new object[] { validCommand with { Title = string.Empty } };
         yield return new object[] { validCommand with { Title = "Duo accusam ut. Kasd dolor justo vero sed dolore nonumy tation erat aliquyam labore clita gubergren. Gubergren et consequat amet nonumy diam consequat praesent sed lorem ipsum nostrud illum delenit. Dolores amet feugait ut diam." } };
     }

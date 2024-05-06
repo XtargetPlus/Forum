@@ -1,8 +1,8 @@
-﻿using Domain.Dtos;
-using Domain.Monitoring;
+﻿using Forum.Domain.Dtos;
+using Forum.Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.GetTopics;
+namespace Forum.Domain.UseCases.GetTopics;
 
 public record GetTopicsQuery(Guid ForumId, int Skip, int Take) : IRequest<(IEnumerable<TopicDto> resources, int totalCount)>, IMonitoredRequest
 {

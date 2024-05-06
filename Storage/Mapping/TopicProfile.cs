@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Domain.Dtos;
-using Storage.Models;
+using Forum.Domain.Dtos;
+using Forum.Storage.Models;
 
-namespace Storage.Mapping;
+namespace Forum.Storage.Mapping;
 
 public class TopicProfile : Profile
 {

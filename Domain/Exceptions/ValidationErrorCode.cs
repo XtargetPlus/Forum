@@ -1,4 +1,4 @@
-﻿namespace Domain.Exceptions;
+﻿namespace Forum.Domain.Exceptions;
 
 public static class ValidationErrorCode
 {

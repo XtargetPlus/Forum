@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{240FEF70-6E55-48E6-B665-3726C230959F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Domain", "Domain\Forum.Domain.csproj", "{240FEF70-6E55-48E6-B665-3726C230959F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage", "Storage\Storage.csproj", "{6CF63EAC-7162-46FA-8280-C5E838086ED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Storage", "Storage\Forum.Storage.csproj", "{6CF63EAC-7162-46FA-8280-C5E838086ED3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{187C1326-BC88-42DB-9DCD-17550086EA2B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{3790690C-F564-4875-BBD7-94BE8A12A012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Domain.Tests", "Domain.Tests\Forum.Domain.Tests.csproj", "{3790690C-F564-4875-BBD7-94BE8A12A012}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.DependencyInjection", "Domain.DependencyInjection\Domain.DependencyInjection.csproj", "{FA255BA5-749E-4D23-AB46-CA883837420D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Domain.DependencyInjection", "Domain.DependencyInjection\Forum.Domain.DependencyInjection.csproj", "{FA255BA5-749E-4D23-AB46-CA883837420D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.DependencyInjection", "Storage.DependencyInjection\Storage.DependencyInjection.csproj", "{E96353D3-D956-48D9-8276-7550F8205F4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Storage.DependencyInjection", "Storage.DependencyInjection\Forum.Storage.DependencyInjection.csproj", "{E96353D3-D956-48D9-8276-7550F8205F4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E2E", "E2E\E2E.csproj", "{6FBFA2B5-6387-4F67-8E5C-5CD0CAD94E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.E2E", "E2E\Forum.E2E.csproj", "{6FBFA2B5-6387-4F67-8E5C-5CD0CAD94E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Tests", "Storage.Tests\Storage.Tests.csproj", "{01811463-FC00-4818-872B-A07D5472BD47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Storage.Tests", "Storage.Tests\Forum.Storage.Tests.csproj", "{01811463-FC00-4818-872B-A07D5472BD47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forum", "Forum", "{2C46BD64-9B7A-4995-BDD5-717123B3BF67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{240FEF70-6E55-48E6-B665-3726C230959F} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{6CF63EAC-7162-46FA-8280-C5E838086ED3} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{3790690C-F564-4875-BBD7-94BE8A12A012} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{FA255BA5-749E-4D23-AB46-CA883837420D} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{E96353D3-D956-48D9-8276-7550F8205F4F} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{6FBFA2B5-6387-4F67-8E5C-5CD0CAD94E3B} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
+		{01811463-FC00-4818-872B-A07D5472BD47} = {2C46BD64-9B7A-4995-BDD5-717123B3BF67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E12305A3-4454-4817-A988-384CF8DC545B}

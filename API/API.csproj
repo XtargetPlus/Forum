@@ -29,9 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain.DependencyInjection\Domain.DependencyInjection.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Storage.DependencyInjection\Storage.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Domain.DependencyInjection\Forum.Domain.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Domain\Forum.Domain.csproj" />
+    <ProjectReference Include="..\Storage.DependencyInjection\Forum.Storage.DependencyInjection.csproj" />
   </ItemGroup>
 
   <ItemGroup>

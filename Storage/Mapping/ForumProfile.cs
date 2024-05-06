@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Domain.Dtos;
-using Storage.Models;
+using Forum.Domain.Dtos;
 
-namespace Storage.Mapping;
+namespace Forum.Storage.Mapping;
 
 public class ForumProfile : Profile
 {
     public ForumProfile()
     {
-        CreateMap<Forum, ForumDto>()
+        CreateMap<Models.Forum, ForumDto>()
             .ForMember(d => d.ForumId, s => s.MapFrom(f => f.Id));
     }
 }

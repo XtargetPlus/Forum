@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Json;
-using Domain.Authentication;
 using FluentAssertions;
+using Forum.Domain.Authentication;
 
-namespace E2E;
+namespace Forum.E2E;
 
 public class AccountEndpointsShould(ForumApiApplicationFactory factory) : IClassFixture<ForumApiApplicationFactory>
 {
@@ -15,7 +15,7 @@ public class AccountEndpointsShould(ForumApiApplicationFactory factory) : IClass
         signOnResponse.IsSuccessStatusCode.Should().BeTrue();
         var createdUser = await signOnResponse.Content.ReadFromJsonAsync<Identity>();
         createdUser.Should().NotBeNull();
-        
+
         using var signInResponse = await httpClient.PostAsync("api/accounts/signin", JsonContent.Create(new { Login = "Test", Password = "qwerty" }));
         signInResponse.IsSuccessStatusCode.Should().BeTrue();
 

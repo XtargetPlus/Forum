@@ -1,9 +1,9 @@
-﻿using Domain.Authentication;
-using Domain.UseCases.CreateTopic;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.UseCases.CreateTopic;
 using Moq;
 
-namespace Domain.Tests.Authorization;
+namespace Forum.Domain.Tests.Authorization;
 
 public class TopicIntentionResolverShould
 {
@@ -12,7 +12,7 @@ public class TopicIntentionResolverShould
     [Fact]
     public void ReturnFalse_WhenIntentionNotInEnum()
     {
-        var intention = (TopicIntention) (-1);
+        var intention = (TopicIntention)(-1);
 
         _sut.IsAllowed(new Mock<IIdentity>().Object, intention).Should().BeFalse();
     }

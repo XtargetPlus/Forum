@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Storage.Models;
+namespace Forum.Storage.Models;
 
 public class Forum
 {

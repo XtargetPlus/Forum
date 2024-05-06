@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.SignIn;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.SignIn;
 
-namespace Domain.Tests.SignIn;
+namespace Forum.Domain.Tests.SignIn;
 
 public class SignInCommandValidatorShould
 {

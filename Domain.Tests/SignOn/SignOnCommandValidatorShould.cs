@@ -1,7 +1,7 @@
-﻿using Domain.UseCases.SignOn;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.UseCases.SignOn;
 
-namespace Domain.Tests.SignOn;
+namespace Forum.Domain.Tests.SignOn;
 
 public class SignOnCommandValidatorShould
 {
@@ -11,7 +11,7 @@ public class SignOnCommandValidatorShould
     {
         var validCommand = new SignOnCommand("Qwerty1", "Qwerty2");
 
-        yield return new object[] { validCommand with { Login = string.Empty,  Password = string.Empty} };
+        yield return new object[] { validCommand with { Login = string.Empty, Password = string.Empty } };
         yield return new object[] { validCommand with { Password = string.Empty } };
         yield return new object[] { validCommand with { Login = string.Empty } };
         yield return new object[] { validCommand with { Login = "Duo accusam ut. Kasd dolor justo vero sed dolore nonumy tation erat aliquyam labore clita gubergren. Gubergren et consequat amet nonumy diam consequat praesent sed lorem ipsum nostrud illum delenit. Dolores amet feugait ut diam.", } };

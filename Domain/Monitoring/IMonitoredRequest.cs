@@ -1,4 +1,4 @@
-﻿namespace Domain.Monitoring;
+﻿namespace Forum.Domain.Monitoring;
 
 internal interface IMonitoredRequest
 {

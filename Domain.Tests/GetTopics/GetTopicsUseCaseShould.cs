@@ -1,12 +1,12 @@
-﻿using Domain.Dtos;
-using Domain.Exceptions;
-using Domain.UseCases.GetForums;
-using Domain.UseCases.GetTopics;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Dtos;
+using Forum.Domain.Exceptions;
+using Forum.Domain.UseCases.GetForums;
+using Forum.Domain.UseCases.GetTopics;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.GetTopics;
+namespace Forum.Domain.Tests.GetTopics;
 
 public class GetTopicsUseCaseShould
 {
@@ -19,7 +19,7 @@ public class GetTopicsUseCaseShould
     {
         _storage = new Mock<IGetTopicsStorage>();
         var forumsStorage = new Mock<IGetForumsStorage>();
-        
+
         _getTopicsSetup = _storage.Setup(s => s.GetTopics(It.IsAny<GetTopicsQuery>(), It.IsAny<CancellationToken>()));
         _getForumsSetup = forumsStorage.Setup(s => s.GetForums(It.IsAny<CancellationToken>()));
 

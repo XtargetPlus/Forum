@@ -1,6 +1,6 @@
-﻿using Domain.Authentication;
+﻿using Forum.Domain.Authentication;
 
-namespace Domain.Authorization;
+namespace Forum.Domain.Authorization;
 
 internal class IntentionManager(
         IEnumerable<IIntentionResolver> resolvers,
@@ -10,7 +10,7 @@ internal class IntentionManager(
     public bool IsAllowed<TIntention>(TIntention intention) where TIntention : struct
     {
         var matchingResolver = resolvers.OfType<IIntentionResolver<TIntention>>().FirstOrDefault();
-        
+
         return matchingResolver?.IsAllowed(identityProvider.Current, intention) ?? false;
     }
 }

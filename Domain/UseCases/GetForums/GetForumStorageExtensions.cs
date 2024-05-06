@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using Forum.Domain.Exceptions;
 
-namespace Domain.UseCases.GetForums;
+namespace Forum.Domain.UseCases.GetForums;
 
 internal static class GetForumStorageExtensions
 {
@@ -12,7 +12,7 @@ internal static class GetForumStorageExtensions
 
     public static async Task ThrowIfNotFound(this IGetForumsStorage storage, Guid forumId, CancellationToken cancellationToken)
     {
-        if (!await ForumExists(storage, forumId, cancellationToken))
+        if (!await storage.ForumExists(forumId, cancellationToken))
         {
             throw new ForumNotFoundException(forumId);
         }

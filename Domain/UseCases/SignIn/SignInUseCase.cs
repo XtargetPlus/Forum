@@ -1,11 +1,11 @@
-﻿using Domain.Authentication;
-using Domain.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
+using Forum.Domain.Authentication;
+using Forum.Domain.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Options;
 
-namespace Domain.UseCases.SignIn;
+namespace Forum.Domain.UseCases.SignIn;
 
 internal class SignInUseCase(
         IOptions<AuthenticationConfiguration> options,
@@ -23,7 +23,7 @@ internal class SignInUseCase(
         {
             new()
             {
-                PropertyName = nameof(command.Login), 
+                PropertyName = nameof(command.Login),
                 ErrorCode = ValidationErrorCode.Invalid,
                 AttemptedValue = command.Login
             }

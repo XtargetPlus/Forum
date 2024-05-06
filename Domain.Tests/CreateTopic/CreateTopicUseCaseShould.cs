@@ -1,22 +1,27 @@
-using Domain.Authentication;
-using Domain.Authorization;
-using Domain.Dtos;
-using Domain.Exceptions;
-using Domain.UseCases.CreateTopic;
-using Domain.UseCases.GetForums;
 using FluentAssertions;
+using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
+using Forum.Domain.Dtos;
+using Forum.Domain.Exceptions;
+using Forum.Domain.UseCases;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.UseCases.GetForums;
 using Moq;
 using Moq.Language.Flow;
-using CreateTopicCommand = Domain.UseCases.CreateTopic.CreateTopicCommand;
-using IIdentity = Domain.Authentication.IIdentity;
+using CreateTopicCommand = Forum.Domain.UseCases.CreateTopic.CreateTopicCommand;
+using IIdentity = Forum.Domain.Authentication.IIdentity;
 
-namespace Domain.Tests.CreateTopic;
+namespace Forum.Domain.Tests.CreateTopic;
 
 public class CreateTopicUseCaseShould
 {
     private readonly CreateTopicUseCase _sut;
+
+    private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ICreateTopicStorage> _storage = new();
+    private readonly Mock<IDomainEventStorage> _domainEventStorage = new();
+
     private readonly ISetup<ICreateTopicStorage, Task<TopicDto>> _createTopicSetup;
-    private readonly Mock<ICreateTopicStorage> _storage;
     private readonly ISetup<IIdentity, Guid> _getCurrentUserIdSetup;
     private readonly ISetup<IIntentionManager, bool> _intentionIsAllowedSetup;
     private readonly Mock<IIntentionManager> _intentionManager;
@@ -24,10 +29,18 @@ public class CreateTopicUseCaseShould
 
     public CreateTopicUseCaseShould()
     {
-        _storage = new Mock<ICreateTopicStorage>();
+        var unitOfWorkScope = new Mock<IUnitOfWorkScope>();
+        _unitOfWork
+            .Setup(u => u.StartScope(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(unitOfWorkScope.Object);
+        unitOfWorkScope.Setup(s => s.GetStorage<ICreateTopicStorage>()).Returns(_storage.Object);
+        unitOfWorkScope.Setup(s => s.GetStorage<IDomainEventStorage>()).Returns(_domainEventStorage.Object);
+
         Mock<IGetForumsStorage> getForumsStorage = new();
 
-        _createTopicSetup = _storage.Setup(s => s.CreateTopic(It.IsAny<CreateTopicCommand>(), It.IsAny<Guid>(), It.IsAny<CancellationToken>()));
+        _createTopicSetup = _storage.Setup(s =>
+            s.CreateTopic(It.IsAny<CreateTopicCommand>(), It.IsAny<Guid>(), It.IsAny<CancellationToken>()));
+
         _getForumsSetup = getForumsStorage.Setup(s => s.GetForums(It.IsAny<CancellationToken>()));
 
         var identity = new Mock<IIdentity>();
@@ -38,7 +51,7 @@ public class CreateTopicUseCaseShould
         _intentionManager = new Mock<IIntentionManager>();
         _intentionIsAllowedSetup = _intentionManager.Setup(m => m.IsAllowed(It.IsAny<TopicIntention>()));
 
-        _sut = new CreateTopicUseCase(_intentionManager.Object, _storage.Object, getForumsStorage.Object, identityProvider.Object);
+        _sut = new CreateTopicUseCase(_intentionManager.Object, getForumsStorage.Object, identityProvider.Object, _unitOfWork.Object);
     }
 
     [Fact]
@@ -74,7 +87,7 @@ public class CreateTopicUseCaseShould
         var expected = new TopicDto();
         _createTopicSetup.ReturnsAsync(expected);
         _intentionIsAllowedSetup.Returns(true);
-        _getForumsSetup.ReturnsAsync(new ForumDto[] { new() { ForumId = forumId} });
+        _getForumsSetup.ReturnsAsync(new ForumDto[] { new() { ForumId = forumId } });
         _getCurrentUserIdSetup.Returns(userId);
 
         var newTopic = new CreateTopicCommand(forumId, "Hello World");

@@ -1,7 +1,7 @@
-﻿using Domain.Authentication;
-using Domain.Authorization;
+﻿using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
 
-namespace Domain.UseCases.CreateTopic;
+namespace Forum.Domain.UseCases.CreateTopic;
 
 internal class TopicIntentionResolver : IIntentionResolver<TopicIntention>
 {

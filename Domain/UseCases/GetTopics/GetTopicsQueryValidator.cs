@@ -1,7 +1,7 @@
-﻿using Domain.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using Forum.Domain.Exceptions;
 
-namespace Domain.UseCases.GetTopics;
+namespace Forum.Domain.UseCases.GetTopics;
 
 internal class GetTopicsQueryValidator : AbstractValidator<GetTopicsQuery>
 {

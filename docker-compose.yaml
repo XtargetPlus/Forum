@@ -77,20 +77,66 @@ services:
       - prometheus
   
   jaeger:
-     container_name: 'forum-jaeger'
-     image: 'jaegertracing/all-in-one:1.9'
-     environment:
-       COLLECTOR_ZIPKIN_HOST_PORT: 9411
-     ports:
-       - '5775:5775/udp'
-       - '6831:6831/udp'
-       - '6832:6832/udp'
-       - '5778:5778'
-       - '16686:16686'
-       - '14268:14268'
-       - '14250:14250'
-       - '9411:9411'
+    container_name: 'forum-jaeger'
+    image: 'jaegertracing/all-in-one:1.9'
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: 9411
+    ports:
+      - '5775:5775/udp'
+      - '6831:6831/udp'
+      - '6832:6832/udp'
+      - '5778:5778'
+      - '16686:16686'
+      - '14268:14268'
+      - '14250:14250'
+      - '9411:9411'
   
+  zookeeper:
+    container_name: 'forum-zookeeper'
+    image: 'confluentinc/cp-zookeeper:7.6.0'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+   
+  kafka-broker:
+    container_name: 'forum-kafka-broker'
+    image: 'confluentinc/cp-kafka:7.6.0'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: forum-zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://forum-kafka-broker:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+    ports:
+      - '9092:9092'
+    depends_on:
+      - zookeeper
+
+  kafka-connect:
+    container_name: 'forum-jdbc-connect'
+    image: 'kafka-connect-jdbc:local-new'
+    build:
+      context: ./kafka-connect
+    ports:
+      - '8083:8083'
+    depends_on:
+      - kafka-broker
+
+  kafka-ui:
+    image: 'provectuslabs/kafka-ui:latest'
+    container_name: 'forum-kafka-ui'
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-docker
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: forum-kafka-broker:29092
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: domain-events-outbox
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://forum-jdbc-connect:8083
+    ports:
+      - '8082:8080' 
+    depends_on:
+      - kafka-broker
+      - kafka-connect 
+
   api:
     build: 
       context: .

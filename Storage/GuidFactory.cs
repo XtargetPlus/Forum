@@ -1,4 +1,4 @@
-﻿namespace Storage;
+﻿namespace Forum.Storage;
 
 internal class GuidFactory : IGuidFactory
 {

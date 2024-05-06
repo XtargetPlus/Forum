@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Dtos;
-using Domain.UseCases.CreateTopic;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Storage.Models;
 using Microsoft.EntityFrameworkCore;
-using Storage.Models;
-using CreateTopicCommand = Domain.UseCases.CreateTopic.CreateTopicCommand;
+using CreateTopicCommand = Forum.Domain.UseCases.CreateTopic.CreateTopicCommand;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class CreateTopicStorage(
         IMapper dataMapper,
-        IMomentProvider momentProvider,
+        TimeProvider timeProvider,
         AppDbContext dbContext)
     : ICreateTopicStorage
 {
@@ -21,7 +21,7 @@ internal class CreateTopicStorage(
             ForumId = command.ForumId,
             UserId = userId,
             Title = command.Title,
-            CreatedAt = momentProvider.Now
+            CreatedAt = timeProvider.GetUtcNow()
         };
 
         await dbContext.Topics.AddAsync(topic, cancellationToken);

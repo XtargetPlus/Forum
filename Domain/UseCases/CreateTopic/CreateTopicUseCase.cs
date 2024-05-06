@@ -1,16 +1,16 @@
-﻿using Domain.Authentication;
-using Domain.Authorization;
-using Domain.Dtos;
-using Domain.UseCases.GetForums;
+﻿using Forum.Domain.Authentication;
+using Forum.Domain.Authorization;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.GetForums;
 using MediatR;
 
-namespace Domain.UseCases.CreateTopic;
+namespace Forum.Domain.UseCases.CreateTopic;
 
 internal class CreateTopicUseCase(
         IIntentionManager intentionManager,
-        ICreateTopicStorage topicStorage,
         IGetForumsStorage getForumsStorage,
-        IIdentityProvider identityProvider)  
+        IIdentityProvider identityProvider,
+        IUnitOfWork unitOfWork)
     : IRequestHandler<CreateTopicCommand, TopicDto>
 {
     public async Task<TopicDto> Handle(CreateTopicCommand command, CancellationToken cancellationToken)
@@ -19,6 +19,16 @@ internal class CreateTopicUseCase(
         intentionManager.ThrowIfForbidden(TopicIntention.Create);
         await getForumsStorage.ThrowIfNotFound(command.ForumId, cancellationToken);
 
-        return await topicStorage.CreateTopic(command, identityProvider.Current.UserId, cancellationToken);
+        await using var scope = await unitOfWork.StartScope(cancellationToken);
+
+        var createTopicStorage = scope.GetStorage<ICreateTopicStorage>();
+        var domainEventStorage = scope.GetStorage<IDomainEventStorage>();
+
+        var topic = await createTopicStorage.CreateTopic(command, identityProvider.Current.UserId, cancellationToken);
+        await domainEventStorage.AddEvent(topic, cancellationToken);
+
+        await scope.Commit(cancellationToken);
+
+        return topic;
     }
 }

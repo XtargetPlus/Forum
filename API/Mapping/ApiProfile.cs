@@ -1,6 +1,6 @@
 ﻿using API.Dtos.Responses;
 using AutoMapper;
-using Domain.Dtos;
+using Forum.Domain.Dtos;
 
 namespace API.Mapping;
 

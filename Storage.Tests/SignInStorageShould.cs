@@ -1,10 +1,10 @@
-﻿using Domain.Dtos;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Forum.Domain.Dtos;
+using Forum.Storage.Models;
+using Forum.Storage.Storages;
 using Microsoft.EntityFrameworkCore;
-using Storage.Models;
-using Storage.Storages;
 
-namespace Storage.Tests;
+namespace Forum.Storage.Tests;
 
 public class SignInStorageFixture : StorageTextFixture
 {
@@ -67,7 +67,7 @@ public class SignInStorageShould : IClassFixture<SignInStorageFixture>
     public async Task ReturnNewlyCreatedSessionId()
     {
         var sessionId = await _sut.CreateSession(
-            _fixture.UserId, 
+            _fixture.UserId,
             new DateTimeOffset(2024, 2, 28, 1, 37, 0, 0, TimeSpan.Zero),
             CancellationToken.None);
 

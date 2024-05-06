@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Dtos;
-using Domain.UseCases.SignIn;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.SignIn;
+using Forum.Storage.Models;
 using Microsoft.EntityFrameworkCore;
-using Storage.Models;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class SignInStorage(
-        IMapper dataMapper, 
-        AppDbContext dbContext) 
+        IMapper dataMapper,
+        AppDbContext dbContext)
     : ISignInStorage
 {
     public Task<RecognizedUser?> FindUser(string login, CancellationToken cancellationToken) => dbContext.Users

@@ -1,13 +1,13 @@
-﻿using Domain.Authentication;
-using Domain.Dtos;
-using Domain.UseCases.SignIn;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentValidation;
+using Forum.Domain.Authentication;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.SignIn;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Language.Flow;
 
-namespace Domain.Tests.SignIn;
+namespace Forum.Domain.Tests.SignIn;
 
 public class SignInUseCaseShould
 {

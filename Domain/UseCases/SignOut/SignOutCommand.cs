@@ -1,7 +1,7 @@
-﻿using Domain.Monitoring;
+﻿using Forum.Domain.Monitoring;
 using MediatR;
 
-namespace Domain.UseCases.SignOut;
+namespace Forum.Domain.UseCases.SignOut;
 
 public record SignOutCommand : IRequest, IMonitoredRequest
 {

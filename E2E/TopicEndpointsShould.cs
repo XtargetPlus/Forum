@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using API.Dtos.Responses;
 using FluentAssertions;
 
-namespace E2E;
+namespace Forum.E2E;
 
 public class TopicEndpointsShould(ForumApiApplicationFactory factory) : IClassFixture<ForumApiApplicationFactory>, IAsyncLifetime
 {

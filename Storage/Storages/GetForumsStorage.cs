@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Dtos;
-using Domain.UseCases.GetForums;
+using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.GetForums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace Storage.Storages;
+namespace Forum.Storage.Storages;
 
 internal class GetForumsStorage(
         IMapper dataMapper,

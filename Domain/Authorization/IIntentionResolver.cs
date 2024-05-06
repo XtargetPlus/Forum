@@ -1,6 +1,6 @@
-﻿using Domain.Authentication;
+﻿using Forum.Domain.Authentication;
 
-namespace Domain.Authorization;
+namespace Forum.Domain.Authorization;
 
 public interface IIntentionResolver
 {

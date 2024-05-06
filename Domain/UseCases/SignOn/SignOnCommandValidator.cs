@@ -1,7 +1,7 @@
-﻿using Domain.Exceptions;
-using FluentValidation;
+﻿using FluentValidation;
+using Forum.Domain.Exceptions;
 
-namespace Domain.UseCases.SignOn;
+namespace Forum.Domain.UseCases.SignOn;
 
 internal class SignOnCommandValidator : AbstractValidator<SignOnCommand>
 {
