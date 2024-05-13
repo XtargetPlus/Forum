@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(cfg => cfg
             .AddOpenBehavior(typeof(MonitoringPipelineBehavior<,>))
             .AddOpenBehavior(typeof(ValidationPipelineBehavior<,>))
-            .RegisterServicesFromAssembly(Assembly.Load("Domain")));
+            .RegisterServicesFromAssembly(Assembly.Load("Forum.Domain")));
 
         services
             .AddScoped<IIntentionManager, IntentionManager>()
@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
             .AddScoped<IPasswordManager, PasswordManager>()
             .AddScoped<IIdentityProvider, IdentityProvider>();
 
-        services.AddValidatorsFromAssembly(Assembly.Load("Domain"), includeInternalTypes: true);
+        services.AddValidatorsFromAssembly(Assembly.Load("Forum.Domain"), includeInternalTypes: true);
 
         services.AddSingleton<DomainMetrics>();
 

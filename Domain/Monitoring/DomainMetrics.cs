@@ -6,9 +6,9 @@ namespace Forum.Domain.Monitoring;
 
 public class DomainMetrics(IMeterFactory meterFactory)
 {
-    internal static readonly ActivitySource ActivitySource = new("Domain");
+    internal static readonly ActivitySource ActivitySource = new("Forum.Domain");
 
-    private readonly Meter _meter = meterFactory.Create("Domain");
+    private readonly Meter _meter = meterFactory.Create("Forum.Domain");
     private readonly ConcurrentDictionary<string, Counter<int>> _counters = new();
 
     public void IncrementCount(string name, int value, IDictionary<string, object?>? additionalTags = null)

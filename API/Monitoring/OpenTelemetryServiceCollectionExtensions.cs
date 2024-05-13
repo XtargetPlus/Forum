@@ -10,7 +10,7 @@ internal static class OpenTelemetryServiceCollectionExtensions
         .AddOpenTelemetry()
         .WithMetrics(builder => builder
             .AddAspNetCoreInstrumentation()
-            .AddMeter("Domain")
+            .AddMeter("Forum.Domain")
             .AddPrometheusExporter()
             .AddView("http.server.request.duration", new ExplicitBucketHistogramConfiguration
             {
@@ -27,7 +27,7 @@ internal static class OpenTelemetryServiceCollectionExtensions
                     activity.AddTag("error", response.StatusCode >= 400);
             })
             .AddEntityFrameworkCoreInstrumentation(cfg => cfg.SetDbStatementForText = true)
-            .AddSource("Domain")
+            .AddSource("Forum.Domain")
             .AddJaegerExporter(cfg => cfg.Endpoint = new Uri(configuration.GetConnectionString("Tracing")!)))
         .Services;
 }

@@ -34,7 +34,7 @@ public static class ServiceCollectionExtensions
             {
                 opt.UseNpgsql(
                     dbConnectionString,
-                    postOpt => { postOpt.MigrationsAssembly("Storage"); });
+                    postOpt => { postOpt.MigrationsAssembly("Forum.Storage"); });
             });
 
         services
