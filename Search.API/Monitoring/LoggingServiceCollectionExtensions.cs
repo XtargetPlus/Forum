@@ -5,7 +5,7 @@ using Serilog.Events;
 using Serilog.Filters;
 using Serilog.Sinks.Grafana.Loki;
 
-namespace Forum.API.Monitoring;
+namespace Search.API.Monitoring;
 
 internal static class LoggingServiceCollectionExtensions
 {
@@ -16,14 +16,14 @@ internal static class LoggingServiceCollectionExtensions
 
         return services.AddLogging(b => b.AddSerilog(new LoggerConfiguration()
             .MinimumLevel.ControlledBy(loggingLevelSwitch)
-            .Enrich.WithProperty("Application", "Forum.API")
+            .Enrich.WithProperty("Application", "Search.API")
             .Enrich.WithProperty("Environment", environment.EnvironmentName)
             .WriteTo.Logger(lc => lc
                 .Filter.ByExcluding(Matching.FromSource("Microsoft"))
                 .Enrich.With<TracingContextEnricher>()
                 .WriteTo.OpenSearch(
                     configuration.GetConnectionString("OpenSearch"),
-                    "forum-logs-{0:yyyy.MM.dd}")
+                    "search-logs-{0:yyyy.MM.dd}")
                 .WriteTo.GrafanaLoki(
                     configuration.GetConnectionString("Loki")!,
                     propertiesAsLabels: new[]

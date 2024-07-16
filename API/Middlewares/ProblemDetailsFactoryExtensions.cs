@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace API.Middlewares;
+namespace Forum.API.Middlewares;
 
 public static class ProblemDetailsFactoryExtensions
 {

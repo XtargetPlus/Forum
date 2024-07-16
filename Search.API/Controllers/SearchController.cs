@@ -20,8 +20,8 @@ public class SearchController(IMediator mediator) : ControllerBase
     [HttpGet("search")]
     public async Task<IActionResult> Search(string query, CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new SearchQuery(query), cancellationToken);
+        var (resources, totalCount) = await mediator.Send(new SearchQuery(query), cancellationToken);
 
-        return Ok(result);
+        return Ok(new { resources, totalCount });
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace API.Dtos.Requests;
+﻿namespace Forum.API.Dtos.Requests;
 
 public class SignOnRequest
 {

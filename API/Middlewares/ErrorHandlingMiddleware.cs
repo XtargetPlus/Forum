@@ -3,7 +3,7 @@ using Forum.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
-namespace API.Middlewares;
+namespace Forum.API.Middlewares;
 
 public class ErrorHandlingMiddleware(RequestDelegate next)
 {

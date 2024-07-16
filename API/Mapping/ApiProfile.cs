@@ -1,8 +1,8 @@
-﻿using API.Dtos.Responses;
-using AutoMapper;
+﻿using AutoMapper;
+using Forum.API.Dtos.Responses;
 using Forum.Domain.Dtos;
 
-namespace API.Mapping;
+namespace Forum.API.Mapping;
 
 public class ApiProfile : Profile
 {

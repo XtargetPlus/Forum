@@ -1,4 +1,4 @@
-﻿namespace API.Authentication;
+﻿namespace Forum.API.Authentication;
 
 public interface IAuthTokenStorage
 {

@@ -13,16 +13,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OpenTelemetry.Api" Version="1.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Api.ProviderBuilderExtensions" Version="1.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.8.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Api" Version="1.8.1" />
+    <PackageReference Include="OpenTelemetry.Api.ProviderBuilderExtensions" Version="1.8.1" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.5.1" />
     <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.10" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     <PackageReference Include="Serilog.Sinks.Grafana.Loki" Version="8.3.0" />
     <PackageReference Include="Serilog.Sinks.OpenSearch" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -32,12 +30,6 @@
     <ProjectReference Include="..\Domain.DependencyInjection\Forum.Domain.DependencyInjection.csproj" />
     <ProjectReference Include="..\Domain\Forum.Domain.csproj" />
     <ProjectReference Include="..\Storage.DependencyInjection\Forum.Storage.DependencyInjection.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="FigureLibrary.DependencyInjection">
-      <HintPath>..\..\FigureLibrary\FigureLibrary.DependencyInjection\bin\Debug\net7.0\FigureLibrary.DependencyInjection.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

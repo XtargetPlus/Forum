@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Dtos.Requests;
+namespace Forum.API.Dtos.Requests;
 
 public class CreateTopicRequest
 {

@@ -2,7 +2,7 @@
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Forum.API.Monitoring;
+namespace Search.API.Monitoring;
 
 internal static class OpenTelemetryServiceCollectionExtensions
 {
@@ -10,14 +10,14 @@ internal static class OpenTelemetryServiceCollectionExtensions
         .AddOpenTelemetry()
         .WithMetrics(builder => builder
             .AddAspNetCoreInstrumentation()
-            .AddMeter("Forum.Domain")
+            .AddMeter("Search.Domain")
             .AddPrometheusExporter()
             .AddView("http.server.request.duration", new ExplicitBucketHistogramConfiguration
             {
                 Boundaries = new[] {0, 0.05, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 10}
             }))
         .WithTracing(builder => builder
-            .ConfigureResource(r => r.AddService("Forum.API"))
+            .ConfigureResource(r => r.AddService("Search.API"))
             .AddAspNetCoreInstrumentation(opt =>
             {
                 opt.Filter += context => 
@@ -26,7 +26,7 @@ internal static class OpenTelemetryServiceCollectionExtensions
                 opt.EnrichWithHttpResponse = (activity, response) =>
                     activity.AddTag("error", response.StatusCode >= 400);
             })
-            .AddEntityFrameworkCoreInstrumentation(cfg => cfg.SetDbStatementForText = true)
+            .AddHttpClientInstrumentation()
             .AddJaegerExporter(cfg => cfg.Endpoint = new Uri(configuration.GetConnectionString("Tracing")!)))
         .Services;
 }

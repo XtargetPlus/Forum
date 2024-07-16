@@ -16,7 +16,7 @@ internal class SearchStorage(IOpenSearchClient client) : ISearchStorage
                         s => s.Match(m => m
                             .Field(se => se.Title).Query(query)),
                         s => s.Match(m => m
-                            .Field(se => se.Text).Fuzziness(Fuzziness.EditDistance(1))))))
+                            .Field(se => se.Text).Query(query).Fuzziness(Fuzziness.EditDistance(1))))))
             .Highlight(h => h
                 .Fields(
                     f => f.Field(se => se.Title),

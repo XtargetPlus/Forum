@@ -1,7 +1,7 @@
 using System.Reflection;
-using API.Authentication;
-using API.Middlewares;
-using API.Monitoring;
+using Forum.API.Authentication;
+using Forum.API.Middlewares;
+using Forum.API.Monitoring;
 using Forum.Domain.Authentication;
 using Forum.Domain.DependencyInjection;
 using Forum.Storage.DependencyInjection;

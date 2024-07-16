@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using API.Dtos.Responses;
 using FluentAssertions;
+using Forum.API.Dtos.Responses;
 
 namespace Forum.E2E;
 

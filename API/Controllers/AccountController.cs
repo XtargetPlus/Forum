@@ -1,11 +1,11 @@
-﻿using API.Authentication;
-using API.Dtos.Requests;
+﻿using Forum.API.Authentication;
+using Forum.API.Dtos.Requests;
 using Forum.Domain.UseCases.SignIn;
 using Forum.Domain.UseCases.SignOn;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
+namespace Forum.API.Controllers;
 
 [Route("api/accounts")]
 [ApiController]

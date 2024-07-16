@@ -1,6 +1,6 @@
-﻿using API.Dtos.Requests;
-using API.Dtos.Responses;
-using AutoMapper;
+﻿using AutoMapper;
+using Forum.API.Dtos.Requests;
+using Forum.API.Dtos.Responses;
 using Forum.Domain.UseCases.CreateForum;
 using Forum.Domain.UseCases.CreateTopic;
 using Forum.Domain.UseCases.GetForums;
@@ -8,7 +8,7 @@ using Forum.Domain.UseCases.GetTopics;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
+namespace Forum.API.Controllers;
 
 [ApiController]
 [Route("api/forums")]

@@ -11,5 +11,5 @@ public class SearchEntityDto
 public enum SearchEntityType
 {
     ForumTopic,
-    ForumCommand
+    ForumComment
 }

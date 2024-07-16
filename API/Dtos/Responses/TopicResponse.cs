@@ -1,4 +1,4 @@
-﻿namespace API.Dtos.Responses;
+﻿namespace Forum.API.Dtos.Responses;
 
 public class TopicResponse
 {
