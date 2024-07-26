@@ -11,6 +11,8 @@ using Forum.Domain.UseCases.GetTopics;
 using Forum.Domain.UseCases.GetForums;
 using Forum.Domain.UseCases.SignIn;
 using Forum.Domain.Authentication;
+using Forum.Domain.UseCases.CreateComment;
+using Forum.Domain.UseCases.GetComments;
 using Forum.Storage.Storages;
 
 namespace Forum.Storage.DependencyInjection;
@@ -29,6 +31,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICreateTopicStorage, CreateTopicStorage>()
             .AddScoped<IGetTopicsStorage, GetTopicsStorage>()
             .AddScoped<IDomainEventStorage, DomainEventStorage>()
+            .AddScoped<ICreateCommentStorage, CreateCommentStorage>()
+            .AddScoped<IGetCommentsStorage, GetCommentsStorage>()
             .AddScoped<IGuidFactory, GuidFactory>()
             .AddDbContextPool<AppDbContext>(opt =>
             {

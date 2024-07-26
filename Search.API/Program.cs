@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddSearchDomain()
-    .AddSearchStorage(builder.Configuration.GetConnectionString("SearchIndex")!);
+    .AddSearchStorage(builder.Configuration.GetConnectionString("OpenSearch")!);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

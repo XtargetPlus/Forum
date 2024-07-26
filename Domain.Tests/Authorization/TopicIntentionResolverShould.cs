@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Forum.Domain.Authentication;
-using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.Authorization;
 using Moq;
 
 namespace Forum.Domain.Tests.Authorization;

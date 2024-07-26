@@ -7,7 +7,9 @@ public class ForumProfile : Profile
 {
     public ForumProfile()
     {
-        CreateMap<Models.Forum, ForumDto>()
-            .ForMember(d => d.ForumId, s => s.MapFrom(f => f.Id));
+        CreateMap<Entities.Forum, ForumDto>()
+            .ForMember(
+                d => d.ForumId, 
+                s => s.MapFrom(f => f.Id));
     }
 }

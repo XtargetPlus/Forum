@@ -39,4 +39,7 @@ app
 
 app.Run();
 
-public partial class Program;
+namespace Forum.API
+{
+    public partial class Program;
+}

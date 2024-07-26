@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Forum.Domain.Dtos;
+using Forum.Storage.Entities;
 using Forum.Storage.Models;
 
 namespace Forum.Storage.Mapping;
@@ -10,5 +11,7 @@ public class TopicProfile : Profile
     {
         CreateMap<Topic, TopicDto>()
             .ForMember(d => d.TopicId, s => s.MapFrom(t => t.Id));
+
+        CreateMap<TopicListItemReadModel, TopicDto>();
     }
 }

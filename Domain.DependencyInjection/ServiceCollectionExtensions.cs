@@ -2,10 +2,8 @@
 using FluentValidation;
 using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using Forum.Domain.Monitoring;
-using Forum.Domain.UseCases.CreateForum;
-using Forum.Domain.UseCases.CreateTopic;
-using Forum.Domain.UseCases.SignOut;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Forum.Domain.DependencyInjection;
@@ -23,7 +21,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<IIntentionManager, IntentionManager>()
             .AddScoped<IIntentionResolver, ForumIntentionResolver>()
             .AddScoped<IIntentionResolver, TopicIntentionResolver>()
-            .AddScoped<IIntentionResolver, AccountIntentionResolver>();
+            .AddScoped<IIntentionResolver, AccountIntentionResolver>()
+            .AddScoped<IIntentionResolver, CommentIntentionResolver>();
 
         services
             .AddScoped<ISymmetricDecryptor, AesSymmetricEncryptorDecryptor>()

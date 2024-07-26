@@ -12,6 +12,6 @@ internal class GetTopicsUseCase(
     public async Task<(IEnumerable<TopicDto> resources, int totalCount)> Handle(GetTopicsQuery query, CancellationToken cancellationToken)
     {
         await forumsStorage.ThrowIfNotFound(query.ForumId, cancellationToken);
-        return await topicsStorage.GetTopics(query, cancellationToken);
+        return await topicsStorage.GetTopics(query.ForumId, query.Skip, query.Take, cancellationToken);
     }
 }

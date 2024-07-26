@@ -1,5 +1,5 @@
 ﻿using Forum.API.Authentication;
-using Forum.API.Dtos.Requests;
+using Forum.API.Models.Requests;
 using Forum.Domain.UseCases.SignIn;
 using Forum.Domain.UseCases.SignOn;
 using MediatR;

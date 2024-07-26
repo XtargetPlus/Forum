@@ -20,7 +20,8 @@ public class GetTopicsUseCaseShould
         _storage = new Mock<IGetTopicsStorage>();
         var forumsStorage = new Mock<IGetForumsStorage>();
 
-        _getTopicsSetup = _storage.Setup(s => s.GetTopics(It.IsAny<GetTopicsQuery>(), It.IsAny<CancellationToken>()));
+        _getTopicsSetup = _storage.Setup(s => 
+            s.GetTopics(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()));
         _getForumsSetup = forumsStorage.Setup(s => s.GetForums(It.IsAny<CancellationToken>()));
 
         _sut = new GetTopicsUseCase(_storage.Object, forumsStorage.Object);
@@ -51,6 +52,7 @@ public class GetTopicsUseCaseShould
 
         actualResources.Should().BeEquivalentTo(expectedResources);
         actualTotalCount.Should().Be(expectedTotalCount);
-        _storage.Verify(s => s.GetTopics(It.IsAny<GetTopicsQuery>(), It.IsAny<CancellationToken>()), Times.Once);
+        _storage.Verify(s => 
+            s.GetTopics(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Forum.API.Dtos.Requests;
-using Forum.API.Dtos.Responses;
+using Forum.API.Models.Requests;
+using Forum.API.Models.Responses;
 using Forum.Domain.UseCases.CreateForum;
 using Forum.Domain.UseCases.CreateTopic;
 using Forum.Domain.UseCases.GetForums;
@@ -45,7 +45,7 @@ public class ForumController(IMapper dataMapper, IMediator mediator) : Controlle
 
     [HttpGet(Name = nameof(GetForums))]
     [ProducesResponseType(200, Type = typeof(ForumResponse))]
-    public async Task<ActionResult<ForumResponse>> GetForums(
+    public async Task<IActionResult> GetForums(
         CancellationToken cancellationToken)
     {
         var forums = await mediator.Send(new GetForumsQuery(), cancellationToken);
@@ -56,14 +56,14 @@ public class ForumController(IMapper dataMapper, IMediator mediator) : Controlle
     [ProducesResponseType(400)]
     [ProducesResponseType(410)]
     [ProducesResponseType(200)]
-    public async Task<ActionResult> GetTopics(
+    public async Task<IActionResult> GetTopics(
         Guid forumId,
         [FromQuery] int skip,
         [FromQuery] int take,
-        CancellationToken cancellation)
+        CancellationToken cancellationToken)
     {
         var query = new GetTopicsQuery(forumId, skip, take);
-        var (resources, totalCount) = await mediator.Send(query, cancellation);
+        var (resources, totalCount) = await mediator.Send(query, cancellationToken);
 
         return Ok(new { resources = dataMapper.Map<IEnumerable<TopicResponse>>(resources), totalCount });
     }

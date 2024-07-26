@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Forum.Domain.Dtos;
-using Forum.Storage.Models;
+using Forum.Storage.Entities;
 
 namespace Forum.Storage.Mapping;
 

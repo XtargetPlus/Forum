@@ -2,8 +2,8 @@
 using FluentAssertions;
 using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using Forum.Domain.Exceptions;
-using Forum.Domain.UseCases.CreateForum;
 using Moq;
 
 namespace Forum.Domain.Tests.Authorization;

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using Forum.Domain.Exceptions;
 using Forum.Domain.UseCases.SignOut;
 using Moq;

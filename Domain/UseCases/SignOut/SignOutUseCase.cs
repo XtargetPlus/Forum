@@ -1,5 +1,6 @@
 ﻿using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using MediatR;
 
 namespace Forum.Domain.UseCases.SignOut;

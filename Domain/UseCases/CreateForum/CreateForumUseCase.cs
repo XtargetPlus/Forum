@@ -1,4 +1,5 @@
 ﻿using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using Forum.Domain.Dtos;
 using MediatR;
 

@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Forum.Domain.Dtos;
 using Forum.Domain.UseCases.SignIn;
-using Forum.Storage.Models;
+using Forum.Storage.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Storage.Storages;

@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
 using Forum.Domain.Dtos;
 using Forum.Domain.Exceptions;
 using Forum.Domain.UseCases;

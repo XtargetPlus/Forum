@@ -1,5 +1,5 @@
 ﻿using Forum.Domain.UseCases.SignOn;
-using Forum.Storage.Models;
+using Forum.Storage.Entities;
 
 namespace Forum.Storage.Storages;
 

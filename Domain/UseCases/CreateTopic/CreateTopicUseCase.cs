@@ -1,5 +1,7 @@
 ﻿using Forum.Domain.Authentication;
 using Forum.Domain.Authorization;
+using Forum.Domain.Authorization.AccessManagement;
+using Forum.Domain.DomainEvents;
 using Forum.Domain.Dtos;
 using Forum.Domain.UseCases.GetForums;
 using MediatR;
@@ -25,7 +27,7 @@ internal class CreateTopicUseCase(
         var domainEventStorage = scope.GetStorage<IDomainEventStorage>();
 
         var topic = await createTopicStorage.CreateTopic(command, identityProvider.Current.UserId, cancellationToken);
-        await domainEventStorage.AddEvent(topic, cancellationToken);
+        await domainEventStorage.AddEvent(ForumDomainEvent.TopicCreated(topic), cancellationToken);
 
         await scope.Commit(cancellationToken);
 

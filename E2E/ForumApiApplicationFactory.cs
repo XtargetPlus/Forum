@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using Forum.API;
 using Forum.Storage;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;

@@ -22,7 +22,7 @@ namespace Storage.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Storage.Models.Comment", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,8 @@ namespace Storage.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<Guid>("TopicId")
                         .HasColumnType("uuid");
@@ -53,11 +54,15 @@ namespace Storage.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Storage.Models.DomainEvent", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.DomainEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ActivityId")
+                        .HasMaxLength(55)
+                        .HasColumnType("character varying(55)");
 
                     b.Property<byte[]>("ContentBlob")
                         .IsRequired()
@@ -71,7 +76,7 @@ namespace Storage.Migrations
                     b.ToTable("DomainEvents");
                 });
 
-            modelBuilder.Entity("Storage.Models.Forum", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Forum", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +92,7 @@ namespace Storage.Migrations
                     b.ToTable("Forums");
                 });
 
-            modelBuilder.Entity("Storage.Models.Session", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Session", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +111,7 @@ namespace Storage.Migrations
                     b.ToTable("Sessions");
                 });
 
-            modelBuilder.Entity("Storage.Models.Topic", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Topic", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +143,7 @@ namespace Storage.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("Storage.Models.User", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -164,15 +169,15 @@ namespace Storage.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Storage.Models.Comment", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Comment", b =>
                 {
-                    b.HasOne("Storage.Models.Topic", "Topic")
+                    b.HasOne("Forum.Storage.Entities.Topic", "Topic")
                         .WithMany("Comments")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Storage.Models.User", "Author")
+                    b.HasOne("Forum.Storage.Entities.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -183,9 +188,9 @@ namespace Storage.Migrations
                     b.Navigation("Topic");
                 });
 
-            modelBuilder.Entity("Storage.Models.Session", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Session", b =>
                 {
-                    b.HasOne("Storage.Models.User", "User")
+                    b.HasOne("Forum.Storage.Entities.User", "User")
                         .WithMany("Sessions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -194,15 +199,15 @@ namespace Storage.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Storage.Models.Topic", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Topic", b =>
                 {
-                    b.HasOne("Storage.Models.Forum", "Forum")
+                    b.HasOne("Forum.Storage.Entities.Forum", "Forum")
                         .WithMany("Topics")
                         .HasForeignKey("ForumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Storage.Models.User", "Author")
+                    b.HasOne("Forum.Storage.Entities.User", "Author")
                         .WithMany("Topics")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -213,17 +218,17 @@ namespace Storage.Migrations
                     b.Navigation("Forum");
                 });
 
-            modelBuilder.Entity("Storage.Models.Forum", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Forum", b =>
                 {
                     b.Navigation("Topics");
                 });
 
-            modelBuilder.Entity("Storage.Models.Topic", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.Topic", b =>
                 {
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("Storage.Models.User", b =>
+            modelBuilder.Entity("Forum.Storage.Entities.User", b =>
                 {
                     b.Navigation("Comments");
 

@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Forum.Domain.Dtos;
 using Forum.Domain.UseCases.CreateTopic;
-using Forum.Storage.Models;
+using Forum.Storage.Entities;
 using Microsoft.EntityFrameworkCore;
 using CreateTopicCommand = Forum.Domain.UseCases.CreateTopic.CreateTopicCommand;
 
@@ -27,9 +27,6 @@ internal class CreateTopicStorage(
         await dbContext.Topics.AddAsync(topic, cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return await dbContext.Topics
-            .Where(t => t.Id == topic.Id)
-            .ProjectTo<TopicDto>(dataMapper.ConfigurationProvider)
-            .FirstAsync(cancellationToken);
+        return dataMapper.Map<TopicDto>(topic);
     }
 }

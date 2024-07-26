@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Forum.Domain.Dtos;
-using Forum.Storage.Models;
+using Forum.Storage.Entities;
 using Forum.Storage.Storages;
 using Microsoft.EntityFrameworkCore;
 
